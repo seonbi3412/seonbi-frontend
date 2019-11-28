@@ -103,7 +103,7 @@ export default {
         'content': this.content2,
         'user': this.user.user_id
       }
-      axios.post(`http://127.0.0.1:8000/movies/articles/`, data, this.options)
+      axios.post(`https://seonbi3412.herokuapp.com/movies/articles/`, data, this.options)
         .then(response => {
           console.log(response)
           this.tmp_review = response.data
@@ -121,7 +121,7 @@ export default {
         })
     },
     deleteReview(review) {
-      axios.delete(`http://127.0.0.1:8000/movies/reviews/${review.id}/`, this.options)
+      axios.delete(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
           this.$emit('redataload', true)
@@ -150,7 +150,7 @@ export default {
         'movieName': review.movieName,
       }
       console.log(data)
-      axios.put(`http://127.0.0.1:8000/movies/reviews/${review.id}/`, data, this.options)
+      axios.put(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, data, this.options)
         .then(response => {
           console.log(response)
         })
@@ -169,7 +169,7 @@ export default {
         'content': this.editContent2,
         'user': review.user.id
       }
-      axios.put(`http://127.0.0.1:8000/movies/articles/${review.id}/`, data, this.options)
+      axios.put(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, data, this.options)
         .then(response => {
           console.log(response)
           return response.data
@@ -186,7 +186,7 @@ export default {
         })
     },
     deleteArticle(review) {
-      axios.delete(`http://127.0.0.1:8000/movies/articles/${review.id}/`, this.options)
+      axios.delete(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
           this.$emit('redataload', true)

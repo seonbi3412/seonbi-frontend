@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post('http://127.0.0.1:8000/api-token-auth/', this.credentials)
+      axios.post('https://seonbi3412.herokuapp.com/api-token-auth/', this.credentials)
         .then(response => {
           console.log(response)
           const token = response.data.token

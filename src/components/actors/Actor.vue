@@ -59,7 +59,7 @@ data() {
   },
   methods: {
     likeActor() {
-      axios.post(`http://127.0.0.1:8000/movies/actors/${this.actor.id}/like/`, this.user, this.options)
+      axios.post(`https://seonbi3412.herokuapp.com/movies/actors/${this.actor.id}/like/`, this.user, this.options)
         .then(response => {
           this.actor = response.data
           this.like_count = this.actor.like_users.length
@@ -78,7 +78,7 @@ data() {
     }
   },
   mounted() {
-    axios.get(`http://127.0.0.1:8000/movies/actors/${this.$route.params.id}/`)
+    axios.get(`https://seonbi3412.herokuapp.com/movies/actors/${this.$route.params.id}/`)
       .then(response => {
         this.actor = response.data
         this.like_count = this.actor.like_users.length
