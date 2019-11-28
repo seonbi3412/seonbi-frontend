@@ -83,7 +83,8 @@ export default {
         'content': this.content,
         'movie': this.movie.id,
         'user': this.user.user_id,
-        'score': this.rating
+        'score': this.rating,
+        'movieName': this.movie.title,
       }
       axios.post(`http://127.0.0.1:8000/movies/reviews/`, data, this.options)
         .then(response => {
@@ -97,6 +98,7 @@ export default {
           console.log(tmp_review)
           this.content = ''
           this.rating = 0
+          this.$emit('redataload', true)
         })
         .catch(error => {
           console.log(error)

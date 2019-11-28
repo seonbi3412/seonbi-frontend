@@ -1,7 +1,7 @@
 <template>
   <div class="community">
     <router-view ></router-view>
-    <all :reviews="reviews" :users="users" :movies="movies"/>
+    <all :reviews="reviews" :users="users" :movies="movies" @redataload="loadDBdata"/>
     <!-- <select class="form-control" v-model="selectedGenreId">
       <option v-for="movie in movies" :key="movie.id" :value="movie.id">{{movie.name}}</option>
     </select> -->
@@ -59,5 +59,11 @@ export default {
     //   'user'
     // ])
   },
+  methods: {
+    loadDBdata() {
+      this.isAuthenticated = this.$session.has('jwt')
+      this.$emit('redataload', true)
+    },
+  }
 }
 </script>

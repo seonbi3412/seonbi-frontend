@@ -10,7 +10,7 @@
                 <p class="m-0">{{ review.user.id }}</p>
               </div>
               <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="review.movie_id && !review.updated">
-                <p class="m-0">{{ review.content }}  -  {{ review.movie_id }}</p>
+                <p class="m-0">{{ review.content }}  -  {{ review.movieName }}</p>
                 <star-rating v-model="review.score" :read-only="true" :star-size="12"></star-rating>
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteReview(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
@@ -42,7 +42,7 @@
               <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.updated">
                 <p class="m-0">{{ review.content }}</p>
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
-                <a class="edit_delete" href="" @click.prevent="deleteReview(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
+                <a class="edit_delete" href="" @click.prevent="deleteArticle(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
               <b-form class="ml-auto mr-sm-3 mb-2" inline v-else>
                 <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent2"/>
@@ -124,11 +124,6 @@ export default {
       axios.delete(`http://127.0.0.1:8000/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
-          const idx = this.reviews.indexOf(review)
-          if (idx > -1) {
-            this.reviews.splice(idx, 1)
-            alert(response.data.message)
-          }
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -144,7 +139,6 @@ export default {
       }
       const idx = this.reviews.indexOf(review)
       this.$set(this.reviews[idx], 'updated', !review.updated)
-      this.$emit('redataload', true)
     },
     editReview(review) {
       
@@ -152,7 +146,8 @@ export default {
         'score': review.score,
         'content': this.editContent1,
         'movie': review.movie_id,
-        'user': review.user.id
+        'user': review.user.id,
+        'movieName': review.movieName,
       }
       console.log(data)
       axios.put(`http://127.0.0.1:8000/movies/reviews/${review.id}/`, data, this.options)
@@ -189,7 +184,17 @@ export default {
         .catch(error => {
           console.log(error)
         })
-    }
+    },
+    deleteArticle(review) {
+      axios.delete(`http://127.0.0.1:8000/movies/articles/${review.id}/`, this.options)
+        .then(response => {
+          console.log(response)
+          this.$emit('redataload', true)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
   }
 }
 </script>
