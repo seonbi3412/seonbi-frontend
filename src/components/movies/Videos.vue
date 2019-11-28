@@ -2,7 +2,7 @@
   <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide v-for="video in videos" :key="video.id">
-      <iframe width="640" height="360" :src="`https://www.youtube.com/embed/${video.key}?controls=0`" frameborder="0" allow="autoplay;"></iframe>
+      <iframe width="600" height="300" :src="`https://www.youtube.com/embed/${video.key}?controls=0`" frameborder="0" allow="autoplay;"></iframe>
     </swiper-slide>
     <!-- Optional controls -->
     <div class="swiper-pagination"  slot="pagination"></div>
