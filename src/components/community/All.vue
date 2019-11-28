@@ -124,6 +124,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+          alert(response.data.message)
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -189,6 +190,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+          alert(response.data.message)
           this.$emit('redataload', true)
         })
         .catch(error => {
