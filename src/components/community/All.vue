@@ -31,10 +31,11 @@
         <div class="row">
           <div class="chat container border my-3 px-1"> <!-- 영화없는 댓글 -->
             <div class="d-flex justify-content-center">
-              <b-form class="my-3" @submit.prevent="createReview" v-if="user">
+              <b-form class="my-3" @submit.prevent="createReview" v-if="user" inline>
                 <b-form-input type="text" v-model="content2"/>
+                <button class="btn btn-light btn mx-2 my-3" type="submit">등록</button>
               </b-form>
-              <button class="btn btn-light btn mx-2 my-3" type="submit">등록</button>
+              
             </div>
             <div class="d-flex justify-content-start" v-for="review in reviews" :key="review.id">
               <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.movie_id && !review.updated">
