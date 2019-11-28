@@ -48,7 +48,7 @@ export default {
         .then(response =>{
           this.movies = response.data
           
-          axios.get('http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=20ea3580299a37f479eee8e01bc91ded&targetDt=20191125&itemPerPage=10')
+          axios.get('https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=20ea3580299a37f479eee8e01bc91ded&targetDt=20191125&itemPerPage=10')
             .then(response => {
               console.log(response.data.boxOfficeResult.dailyBoxOfficeList)
               this.boxoffice = response.data.boxOfficeResult.dailyBoxOfficeList

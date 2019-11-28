@@ -12,12 +12,14 @@
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteReview(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
-              <b-form v-else-if="review.movie_id && review.updated">
-                <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent1"/>
-                <star-rating v-model="review.score" :star-size="12"></star-rating>
-                <button class="btn btn-light" @click.prevent="editReview(review)">수정</button>
-                <button class="btn btn-light" @click.prevent="editOn(review)">취소</button>
-              </b-form>
+              <div v-else-if="review.movie_id && review.updated" class="col-12 d-flex justify-content-end my-2">
+                <star-rating v-model="review.score" :star-size="12" inline></star-rating>
+                <b-form class="mx-1">
+                  <b-form-input class="bg-transparent" type="text" v-model="editContent1"/>
+                </b-form>
+                <button class="btn btn-outline-dark mx-2" @click.prevent="editReview(review)">수정</button>
+                <button class="btn btn-outline-dark" @click.prevent="editOn(review)">취소</button>
+              </div>
             </div>
           </div>
         </div>
@@ -28,10 +30,12 @@
         <h2 class="text-light col-12">잡담</h2></div>
         <div class="row">
           <div class="chat container border my-3 px-1"> <!-- 영화없는 댓글 -->
-            <form class="col-12 my-3" @submit.prevent="createReview" v-if="user">
-              <input type="text" v-model="content2">
-              <button type="submit">등록</button>
-            </form>
+            <div class="d-flex justify-content-center">
+              <b-form class="my-3" @submit.prevent="createReview" v-if="user">
+                <b-form-input type="text" v-model="content2"/>
+              </b-form>
+              <button class="btn btn-light btn mx-2 my-3" type="submit">등록</button>
+            </div>
             <div class="d-flex justify-content-start" v-for="review in reviews" :key="review.id">
               <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.movie_id && !review.updated">
                 <p class="m-0">{{ review.content }}</p>
