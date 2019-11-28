@@ -1,5 +1,5 @@
 <template>
-  <div class="container box col-7">
+  <div class="container box col-8">
     <h1 class="display-1 boxoffice">BoxOffice</h1>
     <div>
       <swiper class="swiper-wrapper" :options="swiperOption" ref="mySwiper">
@@ -95,9 +95,8 @@ export default {
   }
 
   .boxoffice {
-  font-family: 'Deco';
   text-align: center;
-  font-size: 7em;
+  font-size: 6rem;
   margin: 20px 0 20px 0;
   color: rgb(255, 153, 102);
   }

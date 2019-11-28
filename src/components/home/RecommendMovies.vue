@@ -1,8 +1,8 @@
 <template>
-  <div class="container rec col-3">
-    <h1 class="display-1 neon">Recommended</h1>
-    <swiper :options="swiperOption">
-      <swiperSlide  ref="mySwiper" v-for="movie in reMovies" :key="movie.id">
+  <div class="container rec col-8">
+    <h1 class="neon">Recommended</h1>
+    <swiper ref="mySwiper" :options="swiperOption">
+      <swiperSlide  v-for="movie in reMovies" :key="movie.id">
         <movie-list-item :movie="movie" :reviews="reviews" :users="users"/>
       </swiperSlide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -84,9 +84,8 @@ export default {
   }
   .neon {
     color: rgb(204, 153, 255);
-    font-family: 'Deco';
     text-align: center;
-    font-size: 7em;
+    font-size: 5em;
     margin: 20px 0 20px 0;
   }
 </style>

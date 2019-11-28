@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
   div {
-    font-family: 'Komika Boogie', 'BMJUA';
+    font-family: 'Bebas Neue', 'BMJUA';
     letter-spacing: 4px;
   }
 </style>
