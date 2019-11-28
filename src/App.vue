@@ -78,6 +78,7 @@ export default {
           axios.post(`http://127.0.0.1:8000/movies/recommend/`, data)
             .then(response => {
               console.log(response)
+              this.reMovies = response.data
             })
             .catch(error => {
               console.log(error)
