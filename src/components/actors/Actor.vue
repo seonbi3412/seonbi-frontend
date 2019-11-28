@@ -25,14 +25,11 @@
       <h3>필모그래피</h3>
       <div class="row">
         <div v-for="filmo in actor.filmography" :key="filmo.id" class="m-2">
-          <div>
-            <router-link class="filmography" :to="`/movies/${filmo.id}`">
+          <div @click="moveMovie(filmo)">
               <p class="text-info">{{ filmo.title }}</p>
               <img :src="`https://image.tmdb.org/t/p/w200${filmo.poster_url}`">
-            </router-link>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
@@ -40,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../../router'
 import { mapGetters } from 'vuex'
 export default {
   name: "actor",
@@ -75,6 +73,9 @@ data() {
         .catch(error => {
           console.log(error)
         })
+    },
+    moveMovie(filmo) {
+      router.push(`/movies/${filmo.id}`)
     }
   },
   mounted() {

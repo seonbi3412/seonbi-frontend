@@ -38,9 +38,9 @@
         <div class="flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <ActorListItem class="" :actor="actor" :reviews="reviews"/>  
+              <ActorListItem class="" :actor="actor"/>  
             </div>
-            <router-link :to="`actors/${actor.id}`">
+            <router-link :to="`actors/${actor.id}`" :users="users" :reviews="reviews">
               <div class="flip-card-back container d-flex flex-column py-5 justify-content-center align-items-center">
                 <h1 class="text-info">{{ actor.name }}</h1>
                 <br>

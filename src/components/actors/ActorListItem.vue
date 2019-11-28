@@ -19,7 +19,7 @@ export default {
     actor: {
       type: Object,
       required: true
-    }
+    },
   },
 }
 </script>
