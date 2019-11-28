@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-      <form @submit.prevent="createReview" class="rounded">
+      <form @submit.prevent="createReview" class="rounded" v-if="user">
         <b-form-input type="text" v-model="content"></b-form-input>
         <star-rating v-model="rating" :star-size="20" :glow="3" :inline="true"></star-rating>
         <button class="btn btn-info btn-sm mx-3 my-2" type="submit">등록</button>
