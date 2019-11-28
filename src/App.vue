@@ -3,7 +3,7 @@
     <div v-if="!this.$route.path.includes('/account/login') && !this.$route.path.includes('/account/signup')">
       <Nav :genres="genres" :movies="movies" :users="users" :actors="actors" :reviews="reviews" @redataload="loadDBdata"/>
     </div>
-    <router-view :genres="genres" :movies="movies" :users="users" :actors="actors" :reviews="reviews" :reMovies="reMovies" @redataload="loadDBdata"/>
+    <router-view :genres="genres" :movies="movies" :users="users" :actors="actors" :reviews="reviews" :reMovies="reMovies" :boxoffice="boxoffice" @redataload="loadDBdata"/>
     <font-awesome-icon icon="user-secret" />
   </div>
 </template>
@@ -27,6 +27,7 @@ export default {
       actors: [],
       reviews: [],
       reMovies: [],
+      boxoffice: [],
     }
   },
   computed: {
@@ -46,6 +47,22 @@ export default {
       axios.get(`https://seonbi3412.herokuapp.com/movies/`)
         .then(response =>{
           this.movies = response.data
+          
+          axios.get('http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=20ea3580299a37f479eee8e01bc91ded&targetDt=20191125&itemPerPage=10')
+            .then(response => {
+              console.log(response.data.boxOfficeResult.dailyBoxOfficeList)
+              this.boxoffice = response.data.boxOfficeResult.dailyBoxOfficeList
+              this.boxoffice = this.boxoffice.map(box => {
+                let mov = this.movies.filter(movie => {
+                  return box.movieNm === movie.title
+                })
+                return {...box, poster_url: mov.length > 0 ? mov[0].poster_url : ''}
+              })
+              console.log(this.boxoffice)
+            })
+            .catch(error => {
+              console.log(error)
+            })
         })
         .catch(error => {
           console.log(error)
