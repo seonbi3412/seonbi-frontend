@@ -1,47 +1,62 @@
 <template>
+<div class="py-5">
   <div class="detail container d-flex justify-content-center align-items-center">
-    <div class="col-4">
+    <div class="col-4 text-info">
       <h1>{{ movie.title }}</h1>
       <img :src="poster_url" :alt="movie.title">
     </div>
-    <div class="col-8 d-flex flex-column">
+    <div class="des col-8 d-flex flex-column text-light container">
       <videos class="col-12" :videos="videos"/>
-      <h5>{{ movie.score }} | {{ movie.open_date }}</h5>
-      <h5>장르: <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }} </span></h5>
-      <p>{{ like_count }}</p>
-      <div class="container">
+      <h5><star-rating :inline="true" v-model="movie.score" :max-rating="10" :star-size="20" :read-only="true" :increment="0.2"></star-rating> | {{ movie.open_date }}</h5>
+      <div class="my-2">
+        <span v-for="genre in movie.genres" :key="genre.id" class="m-1">
+          <button class="btn text-light" :class="{ 
+            'btn-danger': genre.id === 28 || genre.id === 80 || genre.id === 53 || genre.id === 10752,
+            'btn-warning': genre.id === 16 || genre.id === 35 || genre.id === 18 || genre.id === 10751 || genre.id === 10749,
+            'btn-info': genre.id === 14 || genre.id === 878 || genre.id === 12, 
+            'btn-success': genre.id === 99 || genre.id === 36 || genre.id === 10402 || genre.id === 10770 || genre.id === 37,
+            'btn-primary': genre.id === 9648 || genre.id === 27 }">
+            {{ genre.name }}
+          </button>
+        </span>
+      </div>
+      <p class="mb-1"><span class="display-4 text-info">{{ like_count }}</span> 명이 좋아합니다</p>
+      <div class="container mt-0 mb-3">
         <button class="btn btn-light" @click="likeMovie" v-if="!isLiked && this.user">
           <font-awesome-icon icon="heart" class="text-secondary"/>
         </button>
         <button class="btn btn-light" @click="likeMovie" v-else-if="this.user"><font-awesome-icon icon="heart" class="text-danger"/></button>
       </div>
-      <div class="container">
+      <div class="container rounded-top">
         <p>{{ movie.description }}</p>
       </div>
-      <b-container fluid class="p-2 bg-dark">
+      <b-container fluid class="p-2 rounded-bottom">
         <b-row>
           <b-col cols="2" v-for="actor in movie.actors" :key="actor.id">
-            <b-img thumbnail fluid v-if="actor.profile_path" :src="`https://image.tmdb.org/t/p/w500${actor.profile_path}`" :alt="actor.name"></b-img>
+            <router-link :to="`/actors/${actor.id}`">
+              <b-img thumbnail fluid v-if="actor.profile_path" :src="`https://image.tmdb.org/t/p/w500${actor.profile_path}`" :alt="actor.name"></b-img>
+            </router-link>
           </b-col>
         </b-row>
       </b-container>
     </div>
-    <div class="col-4 border border-dark rounded">
+    <div class="col-4 border border-dark chatbox">
       <div class="reviewChat py-2">
         <div v-for="review in currentReviews" :key="review.id">
-          <div v-if="review.movie === movie.id || review.movie_id === movie.id" class="border border-secondary rounded my-1">
+          <div v-if="review.movie === movie.id || review.movie_id === movie.id" class="bg-light border border-secondary rounded my-1">
             <p class="mb-0 d-inline">{{ review.content }} - {{ review.user.username }} | </p>
             <star-rating :star-size="10" :inline="true" :read-only="true" v-model="review.score"></star-rating>
           </div>
         </div>
       </div>
-      <form @submit.prevent="createReview">
-        <star-rating v-model="rating" :border-width="3" :star-size="10" :inline="true"></star-rating>
+      <form @submit.prevent="createReview" class="rounded">
         <b-form-input type="text" v-model="content"></b-form-input>
-        <button class="btn btn-info btn-sm" type="submit">등록</button>
+        <star-rating v-model="rating" :star-size="20" :glow="3" :inline="true"></star-rating>
+        <button class="btn btn-info btn-sm mx-3 my-2" type="submit">등록</button>
       </form>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -179,7 +194,14 @@ div.reviewChat {
   overflow-y: scroll;
   -ms-overflow-style: none;
 }
+.chatbox {
+  border-radius: 10px;
+  box-shadow:
+        0 0 10px 5px #fff,  /* inner white */
+        0 0 20px 16px rgb(53, 55, 185), /* middle magenta */
+        0 0 25px 15px rgb(210, 67, 223); /* outer cyan */
+}
 ::-webkit-scrollbar {
   display:none;
-} 
+}
 </style>

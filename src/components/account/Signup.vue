@@ -9,7 +9,7 @@
       </div>
       <form @submit.prevent="userSignup" name="registration">
         <div class="form-group">
-          <label for="username">이름</label>
+          <label for="username">Username</label>
           <input v-model="form.username" :state="nameValidation" type="username"  name="username" class="form-control" id="username" placeholder="Enter Username" required>
           <b-form-invalid-feedback :state="nameValidation">
             영문, 숫자, "@, ., +, -, _"을 포함하는 2-50자 가능
@@ -19,11 +19,11 @@
           </b-form-valid-feedback>
         </div>
         <div class="form-group">
-          <label for="email">메일주소</label>
+          <label for="email">Email</label>
           <input v-model="form.email" type="email" name="email"  class="form-control" id="email" placeholder="Enter Email" required>
         </div>
         <div class="form-group">
-          <label for="password">비밀번호</label>
+          <label for="password">Password</label>
           <input v-model="form.password" :state="passwordValidation" type="password" name="password" id="password"  class="form-control" placeholder="Enter Password">
           <b-form-invalid-feedback :state="passwordValidation">
             영문, 숫자를 포함해서 8-20자(특수 문자 O, 공백 문자 X)
