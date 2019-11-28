@@ -4,11 +4,8 @@
       <div class="col-6 mt-3">
         <div class="row"><h2 class="text-light col-12">영화 리뷰</h2></div>
         <div class="row">
-          <div class="chat container border my-3 px-1">
+          <div class="chat container border my-3 px-2">
             <div class="d-flex justify-content-start" v-for="review in reviews" :key="review.id">
-              <div v-if="user.user_id !== review.user.id && review.movie_id" class="userThumb col-1 d-flex align-items-center">
-                <p class="m-0">{{ review.user.id }}</p>
-              </div>
               <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="review.movie_id && !review.updated">
                 <p class="m-0">{{ review.content }}  -  {{ review.movieName }}</p>
                 <star-rating v-model="review.score" :read-only="true" :star-size="12"></star-rating>
@@ -36,15 +33,12 @@
               <button type="submit">등록</button>
             </form>
             <div class="d-flex justify-content-start" v-for="review in reviews" :key="review.id">
-              <div v-if="user.user_id !== review.user.id" class="userThumb col-1 d-flex align-items-center">
-                <p class="m-0">{{ review.user.id }}</p>
-              </div>
-              <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.updated">
+              <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.movie_id && !review.updated">
                 <p class="m-0">{{ review.content }}</p>
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteArticle(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
-              <b-form class="ml-auto mr-sm-3 mb-2" inline v-else>
+              <b-form class="ml-auto mr-sm-3 mb-2" inline v-else-if="!review.movie_id && review.updated">
                 <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent2"/>
                 <button class="btn btn-outline-dark mr-sm-1" @click.prevent="editArticle(review)">수정</button>
                 <button class="btn btn-outline-dark " @click.prevent="editOn(review)">취소</button>
@@ -124,7 +118,11 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+<<<<<<< HEAD
           alert(response.data.message)
+=======
+          alert('삭제되었습니다.')
+>>>>>>> 2394ba85dc10cd35ca992768ac1bf35e261849c8
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -190,7 +188,11 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+<<<<<<< HEAD
           alert(response.data.message)
+=======
+          alert('삭제되었습니다.')
+>>>>>>> 2394ba85dc10cd35ca992768ac1bf35e261849c8
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -202,13 +204,6 @@ export default {
 </script>
 
 <style>
-div.userThumb {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid black;
-  margin: 15px;
-}
 div.chat {
   width: 500px;
   height: 800px;
@@ -223,7 +218,7 @@ div.chatBubble_u {
   margin-bottom: 15px;
   margin-left: 5px;
   margin-right: auto;
-  padding: 5px;
+  padding: 10px 5px;
   width: 300px; 
   background: rgb(250, 250, 250); 
   border-radius: 10px;
@@ -231,12 +226,12 @@ div.chatBubble_u {
 div.chatBubble_u::before {
   border-top: 5px solid transparent; 
   border-left: 0px solid transparent; 
-  border-right: 15px solid rgba(250, 250, 250, 0.7); 
+  border-right: 15px solid rgba(250, 250, 250); 
   border-bottom: 10px solid transparent; 
   content:""; 
   position:absolute;
   top: 20px;
-  left: -15px;
+  left: -10px;
 }
 div.chatBubble_m {
   position:relative;
