@@ -1,5 +1,6 @@
 <template>
-  <div class="mx-auto" style="width: 400px;" v-if="show">
+<div class="top d-flex justify-content-center align-items-center">
+  <div class="mx-auto text-light" style="width: 400px;" v-if="show">
   <div id="second">
     <div class="myform form ">
       <div class="logo mb-3">
@@ -38,6 +39,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 </template>
 
@@ -137,4 +139,7 @@ export default {
 </script>
 
 <style>
+.top {
+  height: 80vh;
+}
 </style>
