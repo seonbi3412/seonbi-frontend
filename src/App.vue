@@ -43,7 +43,7 @@ export default {
       }
     },
     loadDBdata() {
-      axios.get(`http://127.0.0.1:8000/movies/`)
+      axios.get(`https://seonbi3412.herokuapp.com/movies/`)
         .then(response =>{
           this.movies = response.data
         })
@@ -51,7 +51,7 @@ export default {
           console.log(error)
         })
 
-      axios.get(`http://127.0.0.1:8000/movies/genres/`)
+      axios.get(`https://seonbi3412.herokuapp.com/movies/genres/`)
         .then(response =>{
           this.genres = response.data
         })
@@ -59,7 +59,7 @@ export default {
           console.log(error)
         })
 
-      axios.get(`http://127.0.0.1:8000/movies/users/`)
+      axios.get(`https://seonbi3412.herokuapp.com/movies/users/`)
         .then(response =>{
           this.users = response.data
 
@@ -75,7 +75,7 @@ export default {
 
           console.log(data)
 
-          axios.post(`http://127.0.0.1:8000/movies/recommend/`, data)
+          axios.post(`https://seonbi3412.herokuapp.com/movies/recommend/`, data)
             .then(response => {
               console.log(response)
               this.reMovies = response.data
@@ -88,7 +88,7 @@ export default {
         .catch(error => {
           console.log(error)
         }),
-      axios.get(`http://127.0.0.1:8000/movies/actors/`)
+      axios.get(`https://seonbi3412.herokuapp.com/movies/actors/`)
         .then(response =>{
           this.actors = response.data
         })
@@ -96,7 +96,7 @@ export default {
           console.log(error)
         })
 
-      axios.get(`http://127.0.0.1:8000/movies/reviews/`)
+      axios.get(`https://seonbi3412.herokuapp.com/movies/reviews/`)
         .then(response =>{
           this.reviews = response.data.map(data => {
             return {...data, updated: false}

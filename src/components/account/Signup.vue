@@ -99,14 +99,14 @@ export default {
   methods: {
     userSignup() {
       if (this.passwordValidation && this.nameValidation){
-        axios.post('http://127.0.0.1:8000/accounts/signup/', this.form)
+        axios.post('https://seonbi3412.herokuapp.com/accounts/signup/', this.form)
           .then(response => {
             console.log(response)
             const credentials = {
               username: this.form.username,
               password: this.form.password
             }
-            axios.post('http://127.0.0.1:8000/api-token-auth/', credentials)
+            axios.post('https://seonbi3412.herokuapp.com/api-token-auth/', credentials)
               .then(response => {
                 console.log(response)
                 const token = response.data.token

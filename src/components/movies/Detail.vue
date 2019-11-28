@@ -86,7 +86,7 @@ export default {
         'score': this.rating,
         'movieName': this.movie.title,
       }
-      axios.post(`http://127.0.0.1:8000/movies/reviews/`, data, this.options)
+      axios.post(`https://seonbi3412.herokuapp.com/movies/reviews/`, data, this.options)
         .then(response => {
           let tmp_review = response.data
           this.users.forEach(user => {
@@ -105,7 +105,7 @@ export default {
         })
     },
     likeMovie() {
-      axios.post(`http://127.0.0.1:8000/movies/${this.movie.id}/like/`, this.user, this.options)
+      axios.post(`https://seonbi3412.herokuapp.com/movies/${this.movie.id}/like/`, this.user, this.options)
         .then(response => {
           this.movie = response.data
           this.like_count = this.movie.like_users.length
@@ -125,7 +125,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`http://127.0.0.1:8000/movies/${this.$route.params.id}/reviews/`)
+    axios.get(`https://seonbi3412.herokuapp.com/movies/${this.$route.params.id}/reviews/`)
       .then(response => {
         console.log('======================== ')
         console.log(response)
@@ -138,7 +138,7 @@ export default {
           })
         })
       })
-    axios.get(`http://127.0.0.1:8000/movies/${this.$route.params.id}/`)
+    axios.get(`https://seonbi3412.herokuapp.com/movies/${this.$route.params.id}/`)
       .then(response => {
         this.movie = response.data
         this.like_count = this.movie.like_users.length

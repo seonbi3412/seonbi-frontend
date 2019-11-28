@@ -47,7 +47,7 @@ export default {
     ])
   },
   mounted() {
-    axios.get(`http://127.0.0.1:8000/movies/users/${this.$route.params.id}`)
+    axios.get(`https://seonbi3412.herokuapp.com/movies/users/${this.$route.params.id}`)
         .then(response => {
           console.log(response)
           this.profile_user = response.data
