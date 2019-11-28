@@ -210,7 +210,7 @@ div.chatBubble_u {
   margin-bottom: 15px;
   margin-left: 5px;
   margin-right: auto;
-  padding: 5px;
+  padding: 10px 5px;
   width: 300px; 
   background: rgb(250, 250, 250); 
   border-radius: 10px;
@@ -223,7 +223,7 @@ div.chatBubble_u::before {
   content:""; 
   position:absolute;
   top: 20px;
-  left: -15px;
+  left: -10px;
 }
 div.chatBubble_m {
   position:relative;
