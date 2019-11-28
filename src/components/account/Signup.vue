@@ -125,6 +125,10 @@ export default {
                 console.log(error)
               })
           })
+          .catch(error => {
+                console.log(error)
+                alert('등록 정보를 확인해주세요.')
+              })
       }
     }
   }

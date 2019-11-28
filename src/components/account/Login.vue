@@ -63,6 +63,7 @@ export default {
         })
         .catch(error => {
           console.log(error)
+          alert('username과 password를 확인해주세요.')
         })
     }
   }
