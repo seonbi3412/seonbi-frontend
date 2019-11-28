@@ -10,10 +10,8 @@
       <h5>장르: <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }} </span></h5>
       <p>{{ like_count }}</p>
       <div class="container">
-        <button class="btn btn-light" @click="likeMovie" v-if="!isLiked && this.user">
-          <font-awesome-icon icon="heart" class="text-secondary"/>
-        </button>
-        <button class="btn btn-light" @click="likeMovie" v-else-if="this.user"><font-awesome-icon icon="heart" class="text-danger"/></button>
+        <button class="btn btn-secondary" @click="likeMovie" v-if="!isLiked && this.user">좋아요</button>
+        <button class="btn btn-secondary" @click="likeMovie" v-else-if="this.user">좋아요 취소</button>
       </div>
       <div class="container">
         <p>{{ movie.description }}</p>
@@ -175,5 +173,9 @@ div.reviewChat {
   height: 80vh;
   border-radius: 15px;
   overflow-y: scroll;
+  -ms-overflow-style: none;
 }
+::-webkit-scrollbar {
+  display:none;
+} 
 </style>

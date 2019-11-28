@@ -40,7 +40,6 @@
             <div class="flip-card-front">
               <ActorListItem class="" :actor="actor" :reviews="reviews"/>  
             </div>
-            <router-link :to="`actors/${actor.id}`">
             <div class="flip-card-back container d-flex flex-column py-5 justify-content-center align-items-center">
               <h1 class="text-info">{{ actor.name }}</h1>
               <br>
@@ -55,7 +54,6 @@
                 </p>
               </div>
             </div>
-            </router-link>
           </div>
         </div>
       </div>
@@ -148,6 +146,7 @@ export default {
 </script>
 
 <style>
+
 .flip-card {
   background-color: transparent;
   width: 300px;
