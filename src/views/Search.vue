@@ -40,20 +40,22 @@
             <div class="flip-card-front">
               <ActorListItem class="" :actor="actor" :reviews="reviews"/>  
             </div>
-            <div class="flip-card-back container d-flex flex-column py-5 justify-content-center align-items-center">
-              <h1 class="text-info">{{ actor.name }}</h1>
-              <br>
-              <div>
-                {{ actor.birthday }}
+            <router-link :to="`actors/${actor.id}`">
+              <div class="flip-card-back container d-flex flex-column py-5 justify-content-center align-items-center">
+                <h1 class="text-info">{{ actor.name }}</h1>
+                <br>
+                <div>
+                  {{ actor.birthday }}
+                </div>
+                <br>
+                <div>
+                  <p>필모그래피</p>
+                  <p class="mb-0" v-for="filmo in actor.filmography" :key="filmo.id">
+                    {{ filmo.title }}
+                  </p>
+                </div>
               </div>
-              <br>
-              <div>
-                <p>필모그래피</p>
-                <p class="mb-0" v-for="filmo in actor.filmography" :key="filmo.id">
-                  {{ filmo.title }}
-                </p>
-              </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>

@@ -15,12 +15,12 @@
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteReview(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
-              <form v-else-if="review.movie_id && review.updated">
-                <input type="text" v-model="editContent1">
+              <b-form v-else-if="review.movie_id && review.updated">
+                <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent1"/>
                 <star-rating v-model="review.score" :star-size="12"></star-rating>
                 <button class="btn btn-light" @click.prevent="editReview(review)">수정</button>
                 <button class="btn btn-light" @click.prevent="editOn(review)">취소</button>
-              </form>
+              </b-form>
             </div>
           </div>
         </div>
@@ -44,11 +44,11 @@
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteReview(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
-              <form v-else>
-                <input type="text" v-model="editContent2">
-                <button class="btn btn-light" @click.prevent="editArticle(review)">수정</button>
-                <button class="btn btn-light" @click.prevent="editOn(review)">취소</button>
-              </form>
+              <b-form class="ml-auto mr-sm-3 mb-2" inline v-else>
+                <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent2"/>
+                <button class="btn btn-outline-dark mr-sm-1" @click.prevent="editArticle(review)">수정</button>
+                <button class="btn btn-outline-dark " @click.prevent="editOn(review)">취소</button>
+              </b-form>
             </div>
           </div> <!-- 영화없는 댓글 -->
         </div>
