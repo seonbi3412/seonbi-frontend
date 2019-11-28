@@ -118,11 +118,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
-<<<<<<< HEAD
-          alert(response.data.message)
-=======
           alert('삭제되었습니다.')
->>>>>>> 2394ba85dc10cd35ca992768ac1bf35e261849c8
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -188,11 +184,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
-<<<<<<< HEAD
-          alert(response.data.message)
-=======
           alert('삭제되었습니다.')
->>>>>>> 2394ba85dc10cd35ca992768ac1bf35e261849c8
           this.$emit('redataload', true)
         })
         .catch(error => {
