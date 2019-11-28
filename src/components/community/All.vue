@@ -33,12 +33,12 @@
               <button type="submit">등록</button>
             </form>
             <div class="d-flex justify-content-start" v-for="review in reviews" :key="review.id">
-              <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.updated">
+              <div class="col-9 d-flex align-items-center" :class="{ chatBubble_u: user.user_id !== review.user.id, chatBubble_m: user.user_id === review.user.id }" v-if="!review.movie_id && !review.updated">
                 <p class="m-0">{{ review.content }}</p>
                 <a class="edit_delete" href="" @click.prevent="editOn(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="pen" size="xs"/></a>
                 <a class="edit_delete" href="" @click.prevent="deleteArticle(review)" v-if="user.user_id === review.user.id"><font-awesome-icon icon="trash-alt" size="xs"/></a>
               </div>
-              <b-form class="ml-auto mr-sm-3 mb-2" inline v-else>
+              <b-form class="ml-auto mr-sm-3 mb-2" inline v-else-if="!review.movie_id && review.updated">
                 <b-form-input class="mr-sm-1 bg-transparent" type="text" v-model="editContent2"/>
                 <button class="btn btn-outline-dark mr-sm-1" @click.prevent="editArticle(review)">수정</button>
                 <button class="btn btn-outline-dark " @click.prevent="editOn(review)">취소</button>
@@ -118,6 +118,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/reviews/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+          alert('삭제되었습니다.')
           this.$emit('redataload', true)
         })
         .catch(error => {
@@ -183,6 +184,7 @@ export default {
       axios.delete(`https://seonbi3412.herokuapp.com/movies/articles/${review.id}/`, this.options)
         .then(response => {
           console.log(response)
+          alert('삭제되었습니다.')
           this.$emit('redataload', true)
         })
         .catch(error => {
