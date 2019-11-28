@@ -114,7 +114,7 @@
                   v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}</button>
               </div>
               <div class="my-3">
-                <star-rating v-model="movie.score" read-only="true" :star-size="40"></star-rating>
+                <star-rating v-model="movie.score" read-only="true" :star-size="20" :increment="0.1" :max-rating="5"></star-rating>
               </div>
             </div>
             </router-link>
