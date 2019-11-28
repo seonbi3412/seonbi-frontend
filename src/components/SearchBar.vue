@@ -5,7 +5,7 @@
 
     <datalist class="my-5" id="my-list-id">
       <option v-for="movie in movies" :key="`movie-${movie.id}`">{{ movie.title }}</option>
-      <option v-for="actor in actors" :key="actor.id">{{ actor.name }} {{actor.id}}</option>
+      <option v-for="actor in actors" :key="actor.id">{{ actor.name }}</option>
       <option v-for="genre in genres" :key="`genre-${genre.id}`">{{ genre.name }}</option>
     </datalist>
   </div>
