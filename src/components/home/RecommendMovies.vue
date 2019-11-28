@@ -1,12 +1,11 @@
 <template>
   <div class="container rec col-3">
     <h1 class="display-1 neon">Recommended</h1>
-    <swiper ref="mySwiper">
-      <swiperSlide :options="swiperOption" ref="mySwiper" v-for="movie in movies" :key="movie.id">
+    <swiper :options="swiperOption">
+      <swiperSlide  ref="mySwiper" v-for="movie in movies" :key="movie.id">
         <movie-list-item :movie="movie" :reviews="reviews" :users="users"/>
       </swiperSlide>
-
-      <div class="swiper-pagination"  slot="pagination"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
@@ -22,18 +21,18 @@ export default {
       swiperOption: {
         // swiper 옵션, 콜백함수 모두 동일하게 사용
         effect: 'coverflow',
-        slidesPerView: 4,
         spaceBetween: 30,
         autoplay: {
           delay: 5000,
           stopOnLastSlide: false,
           disableOnInteraction: false,
           reverseDirection: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          dynamicBullets: true
         }
       },
-      pagination: {
-        el: '.swiper-pagination',
-      }
     }
   },
   props: {

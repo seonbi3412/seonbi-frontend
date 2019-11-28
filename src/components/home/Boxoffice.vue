@@ -5,11 +5,7 @@
       <swiper class="swiper-wrapper" :options="swiperOption" ref="mySwiper">
         <!-- slides -->
         <swiper-slide v-for="movie in boxoffice" :key="movie.movieCd">
-          <!-- <div class="title" data-swiper-parallax="-100">{{ movie.rank }}</div> -->
-          <div class="poster" data-swiper-parallax="-100"><img v-if="movie.poster_url !== ''" :src="`https://image.tmdb.org/t/p/w300${movie.poster_url}`" alt=""></div>
-          <!-- Parallax subtitle -->
-          <!-- <div class="subtitle" data-swiper-parallax="-150"><strong>{{ movie.movieNm }}</strong></div> -->
-          <!-- And parallax text with custom transition duration -->
+          <img v-if="movie.poster_url !== ''" :src="`https://image.tmdb.org/t/p/w300${movie.poster_url}`" alt="">
         </swiper-slide>
         <!-- Optional controls -->
         <div class="swiper-pagination"  slot="pagination"></div>
@@ -33,21 +29,20 @@ export default {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
+        spaceBetween: 0,
         slidesPerView: 'auto',
         coverflowEffect: {
-          rotate: 10,
+          rotate: 20,
           stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows : false
         },
-        parallax: true,
         autoplay: {
           delay: 5000,
           stopOnLastSlide: false,
           disableOnInteraction: false,
           reverseDirection: false,
-
         }
       },
       pagination: {
