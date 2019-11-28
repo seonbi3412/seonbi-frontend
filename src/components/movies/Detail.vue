@@ -7,7 +7,7 @@
     </div>
     <div class="des col-8 d-flex flex-column text-light container">
       <videos class="col-12" :videos="videos"/>
-      <h5><star-rating :inline="true" v-model="movie.score" :max-rating="10" :star-size="20" :read-only="true" :increment="0.2"></star-rating> | {{ movie.open_date }}</h5>
+      <h5><star-rating :inline="true" v-model="movie.score" :max-rating="5" :star-size="20" :read-only="true" :increment="0.2"></star-rating> | {{ movie.open_date }}</h5>
       <div class="my-2">
         <span v-for="genre in movie.genres" :key="genre.id" class="m-1">
           <button class="btn text-light" :class="{ 
